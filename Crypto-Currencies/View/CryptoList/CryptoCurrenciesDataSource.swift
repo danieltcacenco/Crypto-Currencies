@@ -6,12 +6,12 @@
 import UIKit
 import CryptoAPI
 
-class CryptoCurrenciesDataSource: NSObject {
-    var currencies: [Coin]
-    var coin: Coin?
-    var viewController: UIViewController
+final class CryptoCurrenciesDataSource: NSObject {
+    private var currencies: [Coin]
+    private var coin: Coin?
+    private var viewController: UIViewController
     
-    let cellHeight = 130.0
+    private let cellHeight = 130.0
     
     init(currencies: [Coin], viewController: UIViewController) {
         self.currencies = currencies

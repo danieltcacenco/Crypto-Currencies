@@ -10,12 +10,12 @@ import RealmSwift
 
 public let UpdateCellPrice = Notification.Name("UpdateCellPrice")
 
-class CryptoCurrencyTableViewCell: UITableViewCell {
-  static let identifier = "CryptoCurrencyTableViewCell"
+final class CryptoCurrencyTableViewCell: UITableViewCell {
+    static let identifier = "CryptoCurrencyTableViewCell"
     
-    var lastPrice: Double = 0
+    private var lastPrice: Double = 0
     
-    var coin: Coin!
+    private var coin: Coin!
     
     // MARK: - Properties
     private let icon: UIImageView = {
@@ -44,7 +44,6 @@ class CryptoCurrencyTableViewCell: UITableViewCell {
     
     private let minPriceLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "$ 81.5343243243"
         label.font = .systemFont(ofSize: 10)
         return label
     }()
@@ -59,7 +58,6 @@ class CryptoCurrencyTableViewCell: UITableViewCell {
     
     private let maxPriceLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.text = "$ 81.53"
         label.font = .systemFont(ofSize: 10)
         return label
     }()
@@ -108,40 +106,40 @@ class CryptoCurrencyTableViewCell: UITableViewCell {
         icon.kf.setImage(with: url)
         nameCurrency.text = coin.name
         codeCurrencyLabel.text = coin.code
-        priceLabel.text = "$ " + String(format: "%.6f", DataManager.shared.getLastPriceBy(coin.code))
+        priceLabel.text = String.formatNumberWithDolar(number: DataManager.shared.getLastPriceBy(coin.code))
         minPriceLabel.text = DataManager.shared.findMinPrice(coin)
         maxPriceLabel.text = DataManager.shared.findMaxPrice(coin)
     }
     
     // MARK: - Update Cell
     @objc func didUpdate(_ notification: Notification) {
-         guard let object = notification.userInfo, let coin = object["coin"] as? Coin  else { return }
-         
+        guard let object = notification.userInfo, let coin = object["coin"] as? Coin  else { return }
+        
         if coin.code != self.coin.code {
             return
         }
-         self.priceLabel.text = "$ " + String(format: "%.6f", coin.price)
-         self.priceHolderView.alpha = 1.0
-         self.priceLabel.textColor = .white
-         UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
-             self.priceHolderView.alpha = 0.0
-             
-         }, completion: {_ in
-             self.priceLabel.textColor = .black
-         })
-         
-             if self.lastPrice > coin.price {
-                 self.priceHolderView.backgroundColor = UIColor.init(red: 106.0/255.0, green: 170/255.0, blue: 62/255.0, alpha: 1.0)
-             }else if self.lastPrice < coin.price {
-                 self.priceHolderView.backgroundColor =  UIColor.init(red: 170/255, green: 28/255, blue: 46/255, alpha: 1.0)
-             }else {
-                 self.priceHolderView.backgroundColor = .clear
-             }
-         
-         lastPrice = coin.price
-         minPriceLabel.text = DataManager.shared.findMinPrice(coin)
-         maxPriceLabel.text = DataManager.shared.findMaxPrice(coin)
-     }
+        self.priceLabel.text = String.formatNumberWithDolar(number:coin.price)
+        self.priceHolderView.alpha = 1.0
+        self.priceLabel.textColor = .white
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseOut, animations: {
+            self.priceHolderView.alpha = 0.0
+            
+        }, completion: {_ in
+            self.priceLabel.textColor = .black
+        })
+        
+        if self.lastPrice > coin.price {
+            self.priceHolderView.backgroundColor = UIColor.init(red: 106.0/255.0, green: 170/255.0, blue: 62/255.0, alpha: 1.0)
+        }else if self.lastPrice < coin.price {
+            self.priceHolderView.backgroundColor =  UIColor.init(red: 170/255, green: 28/255, blue: 46/255, alpha: 1.0)
+        }else {
+            self.priceHolderView.backgroundColor = .clear
+        }
+        
+        lastPrice = coin.price
+        minPriceLabel.text = DataManager.shared.findMinPrice(coin)
+        maxPriceLabel.text = DataManager.shared.findMaxPrice(coin)
+    }
 }
 
 // MARK: - Add Subviews

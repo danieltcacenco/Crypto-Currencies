@@ -6,15 +6,13 @@
 import Foundation
 import CryptoAPI
 
-class CryptoCurrenciesViewModel {
+final class CryptoCurrenciesViewModel {
     
     func saveCurrency(coins: [Coin]) {
-        let currencies = DataManager.shared.getAllCurrencyies()
-            coins.forEach { coin in
-                if DataManager.shared.checkForNewPriceHasFound(coin: coin) {
-                    DataManager.shared.saveCurrency(coin: coin)
-                }
+        coins.forEach { coin in
+            if DataManager.shared.checkForNewPriceHasFound(coin: coin) {
+                DataManager.shared.saveCurrency(coin: coin)
             }
+        }
     }
-    
 }

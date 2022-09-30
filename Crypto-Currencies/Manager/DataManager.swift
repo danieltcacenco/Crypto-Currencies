@@ -7,12 +7,11 @@ import UIKit
 import RealmSwift
 import CryptoAPI
 
-class DataManager: NSObject {
+final class DataManager: NSObject {
     
     static let shared = DataManager()
     
     private let realm = try! Realm()
-    
     
     
     func getAllCurrencyies() -> [Currency] {
@@ -46,7 +45,7 @@ class DataManager: NSObject {
         
         if currencies.count > 1 {
             let minCurrency =  currencies.sorted(by: { $0.price < $1.price}).first
-            return "$ " + String(format: "%.6f", minCurrency?.price ?? 0 )
+            return String.formatNumberWithDolar(number: minCurrency?.price)
         }
         return ""
     }
@@ -56,8 +55,8 @@ class DataManager: NSObject {
         let currencies = realm.objects(Currency.self).filter("code contains '\(coin.code)'")
         
         if currencies.count > 1 {
-            let minCurrency =  currencies.sorted(by: { $0.price > $1.price}).first
-            return "$ " + String(format: "%.6f",minCurrency?.price ?? 0)
+            let maxCurrency =  currencies.sorted(by: { $0.price > $1.price}).first
+            return String.formatNumberWithDolar(number: maxCurrency?.price)
         }
         
         return ""

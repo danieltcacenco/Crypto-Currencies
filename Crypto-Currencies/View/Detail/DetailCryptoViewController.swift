@@ -7,19 +7,19 @@ import UIKit
 import Charts
 import CryptoAPI
 
-class DetailCryptoViewController: UIViewController {
+final class DetailCryptoViewController: UIViewController {
 
-    var coin: Coin
+    private var coin: Coin
     
     // MARK: - Properties
-    var chartView = CandleStickChartView()
+    private var chartView = CandleStickChartView()
     
-    let icon: UIImageView = {
+    private let icon: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         return imageView
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel(frame: .zero)
         return label
     }()

@@ -8,14 +8,14 @@ import CryptoAPI
 import RealmSwift
 import SnapKit
 
-class CryptoCurrencyViewController: UIViewController {
+final class CryptoCurrencyViewController: UIViewController {
     // MARK - Parameters
-    var crypto: Crypto!
-    var dataSource: CryptoCurrenciesDataSource!
+    private var crypto: Crypto!
+    private var dataSource: CryptoCurrenciesDataSource!
     private var viewModel = CryptoCurrenciesViewModel()
     
     // MARK: - Properties
-    var tableView: UITableView = {
+    private var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         return tableView
     }()
