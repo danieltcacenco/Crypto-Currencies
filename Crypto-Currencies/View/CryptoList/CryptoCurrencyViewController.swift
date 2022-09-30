@@ -9,22 +9,24 @@ import RealmSwift
 import SnapKit
 
 class CryptoCurrencyViewController: UIViewController {
+    // MARK - Parameters
     var crypto: Crypto!
     var dataSource: CryptoCurrenciesDataSource!
+    private var viewModel = CryptoCurrenciesViewModel()
     
+    // MARK: - Properties
     var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         return tableView
     }()
     
     
+    // MARK: - Setup View
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
     
-    
-    // MARK: - Setup View
     private func setupView() {
         
         self.view.backgroundColor = .white
@@ -45,7 +47,7 @@ class CryptoCurrencyViewController: UIViewController {
         let _ = crypto.connect()
         
         let coins = crypto.getAllCoins()
-        DataManager.shared.saveCoins(coins: coins)
+        viewModel.saveCurrency(coins: coins)
     }
     
     private func setupNavigationBar() {
@@ -72,8 +74,8 @@ extension CryptoCurrencyViewController: CryptoDelegate {
     
     func cryptoAPIDidUpdateCoin(_ coin: CryptoAPI.Coin) {
         DispatchQueue.main.async {
-        DataManager.shared.saveOrUpdatePrice(coins: [coin])
-        NotificationCenter.default.post(name: UpdateCellPrice, object: nil, userInfo: ["coin" : coin])
+            self.viewModel.saveCurrency(coins: [coin])
+            NotificationCenter.default.post(name: UpdateCellPrice, object: nil, userInfo: ["coin" : coin])
         }
     }
     

@@ -25,6 +25,7 @@
 		FF8269EC28E5FD6F00EEA592 /* CryptoAPI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8269EA28E5FD6400EEA592 /* CryptoAPI.xcframework */; };
 		FF8269ED28E5FD6F00EEA592 /* CryptoAPI.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FF8269EA28E5FD6400EEA592 /* CryptoAPI.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FF8BAFAF28E5AE920045B00D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8BAFAE28E5AE920045B00D /* UIView+Extension.swift */; };
+		FF9013C328E7153700CDA188 /* CryptoCurrenciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9013C228E7153700CDA188 /* CryptoCurrenciesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,6 +57,7 @@
 		FF62327128E4B0DF0025EAAA /* DetailCryptoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCryptoViewController.swift; sourceTree = "<group>"; };
 		FF8269EA28E5FD6400EEA592 /* CryptoAPI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = CryptoAPI.xcframework; sourceTree = "<group>"; };
 		FF8BAFAE28E5AE920045B00D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		FF9013C228E7153700CDA188 /* CryptoCurrenciesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrenciesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +99,8 @@
 			children = (
 				FF5B726A28E32AA6005AD16E /* AppDelegate.swift */,
 				FF5B726C28E32AA6005AD16E /* SceneDelegate.swift */,
-				FF62326928E4A75C0025EAAA /* DataManager.swift */,
+				FF9013C428E719A900CDA188 /* Manager */,
+				FF9013C528E719B200CDA188 /* ViewModel */,
 				FF62326728E490680025EAAA /* View */,
 				FF62326628E490620025EAAA /* Model */,
 				FF8BAFB028E5AFB60045B00D /* Extension */,
@@ -165,6 +168,22 @@
 				FF8BAFAE28E5AE920045B00D /* UIView+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		FF9013C428E719A900CDA188 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FF62326928E4A75C0025EAAA /* DataManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		FF9013C528E719B200CDA188 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF9013C228E7153700CDA188 /* CryptoCurrenciesViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF9013C328E7153700CDA188 /* CryptoCurrenciesViewModel.swift in Sources */,
 				FF5B728628E354C4005AD16E /* Currency.swift in Sources */,
 				FF5B726F28E32AA6005AD16E /* CryptoCurrencyViewController.swift in Sources */,
 				FF5B726B28E32AA6005AD16E /* AppDelegate.swift in Sources */,
